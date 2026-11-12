@@ -35,7 +35,7 @@ jobs:
         working-directory: packages/collections-react
       - run: python scripts/inspect-release.py
       - name: Install packed .NET consumer
-        run: dotnet restore examples/dotnet --source "$PWD/artifacts/nuget" --source https://api.nuget.org/v3/index.json && dotnet run --project examples/dotnet --no-restore
+        run: python scripts/smoke-dotnet.py
       - name: Install packed React consumer
         working-directory: examples/react
         run: npm install ../../artifacts/npm/brightertools-cms-collections-react-0.1.0.tgz && node smoke.mjs
