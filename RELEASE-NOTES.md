@@ -1,3 +1,10 @@
+# React 0.1.1
+
+Publishes the unchanged React runtime through the GitHub trusted publisher, with
+npm provenance. This validates the publisher after the initial 0.1.0 maintainer
+bootstrap. JavaScript, declarations, styles, public contracts and dependencies
+are unchanged. The .NET package remains 0.1.0 and is not republished.
+
 # 0.1.0
 
 First public release of collections and structured pages. Preserves existing

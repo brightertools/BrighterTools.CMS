@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@brightertools/cms-collections-react": "0.1.0",
+    "@brightertools/cms-collections-react": "0.1.1",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   }
