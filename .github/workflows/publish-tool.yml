@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false
       - run: dotnet test BrighterTools.CMS.slnx -c Release -m:1 -p:NuGetAuditMode=all -warnaserror:NU1901,NU1902,NU1903,NU1904
       - run: npm ci && npm test && npm audit --audit-level=low
         working-directory: packages/collections-react
@@ -38,7 +39,7 @@ jobs:
         run: python scripts/smoke-dotnet.py
       - name: Install packed React consumer
         working-directory: examples/react
-        run: npm install ../../artifacts/npm/brightertools-cms-collections-react-0.1.0.tgz && node smoke.mjs
+        run: npm install ../../artifacts/npm/*.tgz && node smoke.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: cms-release
@@ -66,6 +67,10 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Use trusted-publishing capable npm
+        if: inputs.publish_to_npm
+        run: npm install -g npm@latest
       - name: NuGet login
         if: inputs.publish_to_nuget
         uses: NuGet/login@v1

@@ -14,6 +14,12 @@ GitHub environment: `production`. NuGet owner: `brightertools`; package policy:
    session and 2FA: `npm publish <verified-tarball> --access public`. Never put a
    token in this repository. Configure that package's GitHub trusted publisher
    with the same owner/repository/workflow/environment for subsequent releases.
+   Allow `npm publish`; separate `npm dist-tag` access is unnecessary. Require 2FA
+   and disallow traditional tokens; OIDC still works. A new npm trust policy must
+   complete its first successful workflow publish within two days, so create it
+   immediately before that next release. Existing versions cannot be republished;
+   a first follow-up patch can validate the publisher without changing runtime code.
+   See https://docs.npmjs.com/trusted-publishers/#trusted-publisher-configuration-expiry.
 5. Run the workflow with publication explicitly enabled for the unpublished target.
    It uploads artifacts even when publication is disabled. Never overwrite versions.
 6. Independently download the registry artifacts into an empty cache, verify source
