@@ -1,0 +1,78 @@
+name: publish-tool
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish_to_nuget:
+        type: boolean
+        default: false
+      publish_to_npm:
+        type: boolean
+        default: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: dotnet test BrighterTools.CMS.slnx -c Release -m:1 -p:NuGetAuditMode=all -warnaserror:NU1901,NU1902,NU1903,NU1904
+      - run: npm ci && npm test && npm audit --audit-level=low
+        working-directory: packages/collections-react
+      - run: dotnet pack packages/BrighterTools.Cms.Collections -c Release --no-restore -o artifacts/nuget
+      - run: mkdir -p ../../artifacts/npm && npm pack --pack-destination ../../artifacts/npm
+        working-directory: packages/collections-react
+      - run: python scripts/inspect-release.py
+      - name: Install packed .NET consumer
+        run: dotnet restore examples/dotnet --source "$PWD/artifacts/nuget" --source https://api.nuget.org/v3/index.json && dotnet run --project examples/dotnet --no-restore
+      - name: Install packed React consumer
+        working-directory: examples/react
+        run: npm install ../../artifacts/npm/brightertools-cms-collections-react-0.1.0.tgz && node smoke.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cms-release
+          path: artifacts/
+  publish:
+    if: github.event_name == 'workflow_dispatch' && (inputs.publish_to_nuget || inputs.publish_to_npm)
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: cms-release
+          path: artifacts
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - name: NuGet login
+        if: inputs.publish_to_nuget
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: brightertools
+      - name: Publish tested NuGet artifact
+        if: inputs.publish_to_nuget
+        run: dotnet nuget push artifacts/nuget/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      - name: Publish tested npm artifact
+        if: inputs.publish_to_npm
+        run: npm publish artifacts/npm/*.tgz --access public --provenance

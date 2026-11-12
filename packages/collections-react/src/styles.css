@@ -1,0 +1,11 @@
+@import './LexicalRichTextField.css';
+.cms-editor { outline: none; }
+.cms-editor fieldset { min-width: 0; }
+.cms-editor .lexical-content-editable { min-height: 130px; padding: 12px; }
+.cms-editor .lexical-editor-shell { border: 1px solid #adb5bd; border-radius: 4px; }
+.cms-media-thumb { max-width: 100%; width: 140px; height: 100px; object-fit: contain; display: block; }
+.cms-media-picker--square .cms-media-thumb { height: 140px; object-fit: cover; }
+.cms-media-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(130px,1fr)); gap: 8px; margin-block: 12px; }
+.cms-media-grid span { display: block; overflow-wrap: anywhere; font-size: .85rem; }
+.cms-preview { overflow: auto; }
+.cms-preview .container { max-width: 100%; }

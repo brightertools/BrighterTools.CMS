@@ -1,0 +1,79 @@
+.lexical-toolbar {
+  display: flex;
+  gap: 0.25rem;
+  border: 1px solid #cdd3dd;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 0.35rem;
+  background: #f7f8fa;
+}
+
+.lexical-toolbar button {
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.lexical-toolbar button:hover {
+  border-color: #cdd3dd;
+  background: #fff;
+}
+
+.lexical-editor-shell {
+  position: relative;
+  border: 1px solid #cdd3dd;
+  border-radius: 0 0 4px 4px;
+}
+
+.lexical-content-editable {
+  min-height: 120px;
+  padding: 0.6rem 0.75rem;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.lexical-placeholder {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.75rem;
+  color: #9aa0ac;
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+
+.lexical-h2 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.lexical-h3 {
+  font-size: 1.1rem;
+  margin: 0.4rem 0;
+}
+
+.lexical-ul,
+.lexical-ol {
+  margin: 0.4rem 0;
+  padding-left: 1.5rem;
+}
+
+.lexical-quote {
+  border-left: 3px solid #cdd3dd;
+  margin: 0.5rem 0;
+  padding-left: 0.75rem;
+  color: #4a4f5c;
+}
+
+.lexical-bold {
+  font-weight: 700;
+}
+
+.lexical-italic {
+  font-style: italic;
+}
+
+.lexical-link {
+  color: #3555db;
+}

@@ -1,0 +1,10 @@
+<Project><PropertyGroup>
+<Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><Deterministic>true</Deterministic>
+<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+</PropertyGroup><PropertyGroup Condition="'$(IsPackable)' != 'false'">
+<Authors>Brighter Tools Ltd</Authors><Company>Brighter Tools Ltd</Company><Copyright>Copyright (c) 2026 Brighter Tools Ltd</Copyright>
+<Version>0.1.0</Version><PackageLicenseExpression>MIT-0</PackageLicenseExpression><PackageReadmeFile>README.md</PackageReadmeFile>
+<RepositoryUrl>https://github.com/brightertools/BrighterTools.CMS</RepositoryUrl><RepositoryType>git</RepositoryType><PublishRepositoryUrl>true</PublishRepositoryUrl>
+<PackageProjectUrl>https://github.com/brightertools/BrighterTools.CMS</PackageProjectUrl><IncludeSymbols>true</IncludeSymbols><SymbolPackageFormat>snupkg</SymbolPackageFormat>
+<GenerateDocumentationFile>true</GenerateDocumentationFile>
+</PropertyGroup></Project>

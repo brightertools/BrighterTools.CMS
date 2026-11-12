@@ -1,0 +1,12 @@
+bin/
+obj/
+node_modules/
+dist/
+artifacts/
+coverage/
+*.user
+.env*
+secrets/
+*.nupkg
+*.snupkg
+*.tgz
