@@ -22,4 +22,5 @@ GitHub environment: `production`. NuGet owner: `brightertools`; package policy:
 
 GitHub and registry account configuration requires the package owner's access.
 No application deployment is performed by this workflow. No static credentials are
-required for ongoing trusted publishing. npm provenance must remain enabled.
+required for ongoing trusted publishing. GitHub npm releases must keep provenance
+enabled; the one-time local bootstrap uses the verified archive and maintainer 2FA.
