@@ -5,6 +5,15 @@ npm provenance. This validates the publisher after the initial 0.1.0 maintainer
 bootstrap. JavaScript, declarations, styles, public contracts and dependencies
 are unchanged. The .NET package remains 0.1.0 and is not republished.
 
+Published 12 November 2026 from `10cbee05a4a713769e337add105bdf2bd0ee3189`.
+Trusted publishing succeeded in
+https://github.com/brightertools/BrighterTools.CMS/actions/runs/43278298418.
+Downloaded npm archive SHA-256:
+`912c9db6b89af2e709e127ba91f5163587d8f7382e9ddf59fc19daac1375edbf`.
+Registry integrity and SLSA provenance were verified against that commit and
+workflow. JavaScript and CSS are byte-identical to 0.1.0; the README and CSS
+module declaration differ only in Windows/Linux line endings.
+
 # 0.1.0
 
 First public release of collections and structured pages. Preserves existing

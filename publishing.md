@@ -30,3 +30,11 @@ GitHub and registry account configuration requires the package owner's access.
 No application deployment is performed by this workflow. No static credentials are
 required for ongoing trusted publishing. GitHub npm releases must keep provenance
 enabled; the one-time local bootstrap uses the verified archive and maintainer 2FA.
+
+## Verified publisher
+
+React 0.1.1 successfully used the GitHub trusted publisher on 12 November 2026.
+The package permission **Allow npm publish** must be enabled; its absence caused
+an npm PUT permission-related 404 until corrected. No extra connection or static
+token was needed. Registry download integrity and provenance were verified; see
+`RELEASE-NOTES.md` for source, workflow and archive hash.
