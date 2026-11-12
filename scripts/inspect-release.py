@@ -12,7 +12,8 @@ for name in files:
  if p.is_file():scan(name,p.read_bytes())
 history=subprocess.run(['git','log','--all','-p'],cwd=root,capture_output=True).stdout
 scan('git history',history)
-for path in sorted((root/'artifacts').rglob('*')):
+release_files=[path for folder in ('nuget','npm') for path in (root/'artifacts'/folder).glob('*')]
+for path in sorted(release_files):
  if not path.is_file() or path.suffix not in ('.nupkg','.snupkg','.tgz'):continue
  if path.suffix=='.tgz':
   with tarfile.open(path) as archive:entries=[(m.name,archive.extractfile(m).read()) for m in archive if m.isfile()]
